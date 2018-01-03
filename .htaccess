@@ -1,0 +1,29 @@
+Options +FollowSymLinks
+RewriteEngine On
+ 
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^view/ ./app/ctrl.php?view
+RewriteRule ^view ./app/ctrl.php?view
+
+RewriteRule ^install/framework ./app/ctrl.php?install
+
+RewriteRule ^get/categories ./app/ctrl.php?get
+RewriteRule ^get/demo ./app/ctrl.php?get
+
+
+RewriteRule ^get/msg ./app/ctrl.php?get
+RewriteRule ^set/msg ./app/ctrl.php?set
+RewriteRule ^del/msg ./app/ctrl.php?del
+
+RewriteRule ^account ./app/ctrl.php?account
+RewriteRule ^login/ ./app/ctrl.php?login
+RewriteRule ^login ./app/ctrl.php?login
+
+RewriteRule ^logout ./app/ctrl.php?logout
+
+
+
+
+
