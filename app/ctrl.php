@@ -21,7 +21,7 @@ if ($params[0] == "view"){
 	if ($params[1] == "registr"){
 		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
 		$ctrl = new ShowCtrl(null);
-		$ctrl->showLogin();
+		$ctrl->showRejestr();
 	}
 }
 

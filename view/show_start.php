@@ -10,7 +10,7 @@ include $conf->root_path.'/view/header.php';
 
 <!-- Page Content -->
 <div class="container">
-  <h1>Test</h1>
+<h1>Test</h1>
 
 </div>
 <!-- /.container -->
