@@ -17,4 +17,14 @@ class ShowCtrl {
 		include $conf->root_path.'/view/'.'show_login.php';
 	}
 
+	public function showRejestr(){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_rejestr.php';
+	}
+
+	public function showLocalizations(){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_localizations.php';
+	}
+
 }
