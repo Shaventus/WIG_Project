@@ -12,4 +12,9 @@ class ShowCtrl {
 		include $conf->root_path.'/view/'.'show_start.php';
 	}
 
+	public function showLogin(){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_login.php';
+	}
+
 }

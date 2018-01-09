@@ -13,6 +13,11 @@ if ($params[0] == "view"){
 		$ctrl = new ShowCtrl(null);
 		$ctrl->showStart();
 	}
+	if ($params[1] == "login"){
+		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
+		$ctrl = new ShowCtrl(null);
+		$ctrl->showLogin();
+	}
 }
 
 // AJAX requests
