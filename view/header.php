@@ -18,7 +18,6 @@ if (!isset($_SESSION)){
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700' rel='stylesheet' type='text/css'>
 
-
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -35,7 +34,7 @@ if (!isset($_SESSION)){
 
 			<link rel="stylesheet" type="text/css" href="'.$conf->app_root.'/css/special/demo.css" />
 			<link rel="stylesheet" type="text/css" href="'.$conf->app_root.'/css/special/form.css" />
-
+      <link rel="stylesheet" type="text/css" href="'.$conf->app_root.'/css/style.css" />
 		';
 
 		?>
