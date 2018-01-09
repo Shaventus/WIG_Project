@@ -11,4 +11,5 @@ class ShowCtrl {
 		global $conf;
 		include $conf->root_path.'/view/'.'show_start.php';
 	}
+
 }
