@@ -5,7 +5,7 @@ class AccountCtrl {
 		$this->db = new DatabaseCtrl();
 	}
   //Show all localizations
-  public function getAccounts(){
+  public function getLocalizations(){
 		$datas = $this->db->connector()->select("localization", [
       "idLocalization",
 			"geoIP",
@@ -16,7 +16,7 @@ class AccountCtrl {
 	}
 
   //Show currect localization
-	public function getAccount(){
+	public function getLocalization(){
 		$datas = $this->db->connector()->select("localization", [
 			"idLocalization" => $_POST['LocalizationId'],
 	    "login",
@@ -28,7 +28,7 @@ class AccountCtrl {
 	}
 
   //Delete localization
-  public function delAccount(){
+  public function delLocalization(){
     $datas = $this->db->connector()->delete("localization", [
       "idLocalization" => $_POST['id']
     ]);
@@ -36,7 +36,7 @@ class AccountCtrl {
   }
 
   //Add localization
-  public function setAccount(){
+  public function setLocalization(){
     $datas = $this->db->connector()->insert("localization", [
       "geoIP" => $_POST['GeoIP'],
       "Account_idAccount" => $_POST['AccountID'],

@@ -47,39 +47,75 @@ include $conf->root_path.'/view/header.php';
 
 <div class="bd-pageheader">
   <h1>Logowanie</h1>
-  <form>
+  <form id="form">
     <div class="form-group">
       <label for="login">LOGIN</label>
-      <input type="text" class="form-control" id="login" placeholder="Login">
+      <input type="text" class="form-control" id="inputLogin" placeholder="Login">
     </div>
     <div class="form-group">
       <label for="password">HASŁO</label>
-      <input type="password" class="form-control" id="password" placeholder="Hasło">
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Zgadzam się z regulaminem strony</label>
+      <input type="password" class="form-control" id="inputPassword" placeholder="Hasło">
     </div>
     <button type="submit" class="btn btn-primary">ZALOGUJ</button>
+    <button type="button" class="btn btn-danger btn-lg" id="button">Rejestracja</button>
   </form>
+
+  <div class="alert alert-danger alert-dismissable" id="msg" style="display: none"></div>
 
 </div>
 </div>
 
 <script>
 
-  $( document ).ready(function() {
+$( document ).ready(function() {
+  $('#form').submit(function(e) {
+    e.preventDefault();
+    var login = $("#inputLogin").val();
+    var pass = $("#inputPassword").val();
+    console.log(login + ":" + pass);
+    if(login == '' || pass == ''){
+			$('#msg').html('Nie wypełniono wszystkich pól');
+			$('#msg').show();
+			setTimeout(function() {
+				$('#msg').fadeOut('fast');
+			}, 1000);
+		} else {
     var response = $.ajax({
-      type: "POST",
-      url: "<?php echo $conf->app_root.'/account/all' ?>",
-      dataType : 'json',
-      async: false,
-      data: {
-      },
-      success: function(json){
+        type: "POST",
+        url: "<?php echo $conf->app_root.'/login' ?>",
+        dataType : 'json',
+        async: false,
+        data: {
+          login : login,
+          pass : pass
+        },
+        success: function(json){
+          if (json[0]['status'] == 'err'){
+						$('#msg').html('Wprowadzone dane są nieprawidłowe');
+						$('#msg').show();
+						$("#inputPassword").val('');
+						$("#inputPassword").prop('disabled', true);
+						$('#login').attr('disabled','disabled');
+						setTimeout(function() {
+							$('#msg').fadeOut('slow');
+							$('#login').removeAttr('disabled');
+							$("#inputPassword").prop('disabled', false);
+						}, 5000);
+					}
+					else if (json[0]['status'] == 'ok'){
+						window.location.replace("<?php echo $conf->app_root.'/view/start' ?>");
+					}
+        }
+      }) .responseText;
+      //alert(response);
+    }
+    });
+    $("#button").click( function()
+      {
+        window.location.replace("<?php echo $conf->app_root.'/view/registr' ?>");
       }
-    }).responseText;
-    alert(response);
-  });
+    );
+});
+
 
 </script>

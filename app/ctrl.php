@@ -1,10 +1,21 @@
 <?php
 require_once dirname (__FILE__).'/../config.php';
+require_once $conf->root_path.'/app/security/LoginCtrl.class.php';
 require_once $conf->root_path.'/app/database/DatabaseCtrl.class.php';
 
 // Split address to $_GET params format: $params[0], $params[1] etc.
 $request = str_replace($conf->app_root."/", "", $_SERVER['REQUEST_URI']);
 $params = mb_split("/", $request);
+
+// Login routing
+if ($params[0] == "login"){
+	$ctrl = new LoginCtrl();
+	$ctrl->doLogin();
+}
+if ($params[0] == "logout"){
+	$ctrl = new LoginCtrl();
+	$ctrl->doLogout();
+}
 
 // View routing
 if ($params[0] == "view"){
@@ -50,6 +61,11 @@ if ($params[0] == "account"){
 		include_once $conf->root_path.'/app/model/AccountCtrl.class.php';
 		$ctrl = new AccountCtrl(null);
 		$ctrl->setAccount();
+	}
+	if ( isset($params[1]) && ($params[1] == "registr") ) {
+		include_once $conf->root_path.'/app/model/AccountCtrl.class.php';
+		$ctrl = new AccountCtrl(null);
+		$ctrl->doRegistr();
 	}
 
 }

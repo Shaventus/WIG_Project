@@ -1,6 +1,7 @@
 <?php
 class AccountCtrl {
 	public $db;
+	private $login, $pass, $email;
 	public function __construct(){
 		$this->db = new DatabaseCtrl();
 	}
@@ -45,5 +46,31 @@ class AccountCtrl {
     ]);
     echo json_encode($datas);
   }
+
+	public function doRegistr(){
+		global $conf;
+		$this->validate();
+	}
+
+	public function getParams(){
+		$this->login = $_POST ['login'];
+		$this->pass = $_POST ['pass'];
+		$this->email = $_POST ['email'];
+	}
+	public function validate() {
+		$this->getParams();
+		if (! (isset ( $this->login ) && isset ( $this->pass ) && isset ( $this->email ))) {
+			echo "Runtime error";
+			exit();
+		}
+
+		$datas = $this->db->connector()->insert("account", [
+			"login" => $this->login,
+			"pass" => $this->pass,
+			"email" => $this->email,
+			"Role_idRole" => 2
+		]);
+		echo json_encode($datas);
+	}
 
 }
