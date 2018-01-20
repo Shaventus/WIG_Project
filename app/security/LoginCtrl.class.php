@@ -71,6 +71,6 @@ class LoginCtrl{
 	}
 	public function showLogout(){
 		global $conf;
-		header("Location: ".$conf->app_url."/view/all");
+		header("Location: ".$conf->app_url."/view/login");
 	}
 }

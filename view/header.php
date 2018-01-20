@@ -58,3 +58,10 @@ if (!isset($_SESSION)){
 
 	</head>
     <body>
+			<div class="container">
+				<?php
+					if (isset($_SESSION["name"])){
+						echo '<p class="btn btn-default">Zalogowany jako: <strong class="btn-default">'.$_SESSION["name"].'      </strong>    <a class="btn-danger" href="'.$conf->app_root.'/logout'.'">Logout</a></p>';
+					}
+					?>
+			</div>
