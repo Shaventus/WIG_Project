@@ -34,6 +34,11 @@ if ($params[0] == "view"){
 		$ctrl = new ShowCtrl(null);
 		$ctrl->showRejestr();
 	}
+	if ($params[1] == "addLocation"){
+		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
+		$ctrl = new ShowCtrl(null);
+		$ctrl->showAddLocation();
+	}
 }
 
 // AJAX requests

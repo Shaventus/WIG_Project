@@ -8,9 +8,9 @@ include $conf->root_path.'/view/header.php';
 }
 </style>
 
-<header>
-<div class="container">
-<div class="collapse bg-dark" id="navbarHeader">
+   <header>
+   <div class="container">
+      <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
@@ -38,78 +38,59 @@ include $conf->root_path.'/view/header.php';
           </button>
         </div>
       </div>
-</header>
-</div>
-<!-- Page Content -->
+	  </div>
+    </header>
+
+<div class="container">
+<hr></hr>
+  <h2>UTWÓRZ NOWĄ MIEJSCOWOŚĆ</h2>
+  <form id="form">
+    <div class="form-group">
+      <label for="login">LOGIN</label>
+      <input type="text" class="form-control" id="inputLogin" placeholder="Login">
+    </div>
+    <div class="form-group">
+      <label for="password">HASŁO</label>
+      <input type="password" class="form-control" id="inputPassword" placeholder="Hasło">
+    </div>
+    <div class="form-group">
+      <label for="email">EMAIL</label>
+      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Zgadzam się z regulaminem strony</label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">DODAJ MIEJSCOWOŚĆ</button>
+    <button type="button" class="btn btn-danger btn-lg" id="Back">POWRÓT NA STRONE GŁOWNĄ</button>
+  </form>
+<hr></hr>
+  <div class="alert alert-danger alert-dismissable" id="msg" style="display: none"></div>
+
 <div class="container">
     <main role="main">
-      <section class="jumbotron text-center" style="color:#333333">
+      <section class="jumbotron text-center">
         <div class="container">
-          <h2 class="jumbotron-heading" >Home</h2>
-          <p class="lead text-muted"> Opis </p>
-		<button type="button" class="btn btn-primary btn-lg" id="AddLocation">DODAJ MIEJSCOWOŚĆ</button>
-	    <button onclick="geoFindMe()" class="btn btn-danger btn-lg">POKAŻ MOJĄ LOKALIZACJĘ</button>
-	 <div id="out"></div>
-	 </div>
+          <h2 class="jumbotron-heading"  style="color:#333333">REGULAMIN STRONY</h2>
+          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+        </div>
       </section>
-<hr></hr>
 </div>
-<!-- /.container -->
+<hr></hr>
       <footer class="text-muted">
       <div class="container">
         <p>Nazwa strony &copy; Autorzy: Maciej Ciosk, Anna Grzywnowicz </p>
       </div>
     </footer>
-
 <script>
 
-function geoFindMe() {
-  var output = document.getElementById("out");
+$( document ).ready(function() {
 
-  if (!navigator.geolocation){
-    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-    return;
-  }
-
-  function success(position) {
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
-
-    output.innerHTML = '<p>Szerokość: ' + latitude + '° <br>Długość geograficzna ' + longitude + '°</p>';
-
-    var img = new Image();
-    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
-
-    output.appendChild(img);
-  }
-
-  function error() {
-    output.innerHTML = "Unable to retrieve your location";
-  }
-
-  output.innerHTML = "<p>Locating…</p>";
-
-  navigator.geolocation.getCurrentPosition(success, error);
-}
-/*
-  $( document ).ready(function() {
-    var response = $.ajax({
-      type: "POST",
-      url: "<?php echo $conf->app_root.'/account/all' ?>",
-      dataType : 'json',
-      async: false,
-      data: {
-      },
-      success: function(json){
+    $("#Back").click( function()
+      {
+        window.location.replace("<?php echo $conf->app_root.'/view/start' ?>");
       }
-    }).responseText;
-    alert(response);
-  });
-*/
+    );
+});
 
-$("#AddLocation").click( function()
-  {
-    window.location.replace("<?php echo $conf->app_root.'/view/addLocation' ?>");
-  }
-);
 </script>

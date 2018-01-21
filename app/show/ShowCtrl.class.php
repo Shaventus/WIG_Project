@@ -27,4 +27,9 @@ class ShowCtrl {
 		include $conf->root_path.'/view/'.'show_localizations.php';
 	}
 
+	public function showAddLocation(){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_addlocation.php';
+	}
+
 }
