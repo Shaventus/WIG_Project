@@ -8,19 +8,59 @@ include $conf->root_path.'/view/header.php';
 }
 </style>
 
+<header>
+<div class="container">
+<div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">O nas</h4>
+              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Kontakt</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                <li><a href="#" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <strong>Nazwa</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+</header>
+</div>
 <!-- Page Content -->
 <div class="container">
-<h1>menu czy coś z przejsciem do panelu użytkowniak</h1>
-<h1>Przycisk dodania miejscowości</h1>
-<h1>Tu jakieś wyszukiwanie</h1>
-<h1>elementy w jakich miejscowości mają być wyświetlane</h1>
-
-<p><button onclick="geoFindMe()">Show my location</button></p>
-<div id="out"></div>
-
+    <main role="main">
+      <section class="jumbotron text-center" style="color:#333333">
+        <div class="container">
+          <h2 class="jumbotron-heading" >Home</h2>
+          <p class="lead text-muted"> Opis </p>
+		<button type="button" class="btn btn-primary btn-lg" id="Back">DODAJ MIEJSCOWOŚĆ</button>
+	    <button onclick="geoFindMe()" class="btn btn-danger btn-lg">POKAŻ MOJĄ LOKALIZACJĘ</button>
+	 <div id="out"></div>
+	 </div>
+      </section>
+<hr></hr>
 </div>
 <!-- /.container -->
-
+      <footer class="text-muted">
+      <div class="container">
+        <p>Nazwa strony &copy; Autorzy: Maciej Ciosk, Anna Grzywnowicz </p>
+      </div>
+    </footer>
+	
 <script>
 
 function geoFindMe() {
