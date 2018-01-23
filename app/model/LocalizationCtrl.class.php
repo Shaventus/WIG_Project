@@ -8,7 +8,9 @@ class AccountCtrl {
   public function getLocalizations(){
 		$datas = $this->db->connector()->select("localization", [
       "idLocalization",
-			"geoIP",
+			"latiitude",
+			"longitude",
+			"name",
 			"Account_idAccount"],[
 			"ORDER" => "idLocalization DESC"
 		]);
@@ -19,10 +21,10 @@ class AccountCtrl {
 	public function getLocalization(){
 		$datas = $this->db->connector()->select("localization", [
 			"idLocalization" => $_POST['LocalizationId'],
-	    "login",
-	    "pass",
-	    "email"],[
-	    "ORDER" => "idAccount DESC"
+			"latiitude",
+			"longitude",
+			"name"],[
+	    "ORDER" => "idLocalization DESC"
 		]);
 		echo json_encode($datas);
 	}
@@ -38,7 +40,9 @@ class AccountCtrl {
   //Add localization
   public function setLocalization(){
     $datas = $this->db->connector()->insert("localization", [
-      "geoIP" => $_POST['GeoIP'],
+      "latiitude" => $_POST['latiitude'],
+			"longitude" => $_POST['longitude'],
+			"name" => $_POST['name'],
       "Account_idAccount" => $_POST['AccountID'],
     ]);
     echo json_encode($datas);
