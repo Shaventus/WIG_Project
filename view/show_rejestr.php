@@ -8,21 +8,20 @@ include $conf->root_path.'/view/header.php';
 }
 </style>
 
-   <header>
+  <header>
    <div class="container">
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">O nas</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+              <h4 class="text-white">O NAS</h4>
+              <p>Aplikacja dotyczy fotografii, korzysta z technologii AJAX wraz z elementami języka JavaScript (jQuery).</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Kontakt</h4>
+              <h4 class="text-white">KONTAKT</h4>
               <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
+				<p>W przypadku pytań, uwag, wątpliwości lub sugestii proszę skontaktować się z autorami strony.</p>
+                <li><a href="#" class="text-white">Email</a></li>
               </ul>
             </div>
           </div>
@@ -31,7 +30,7 @@ include $conf->root_path.'/view/header.php';
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong>Nazwa</strong>
+            <strong>PhotoAMApp</strong>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,7 +42,7 @@ include $conf->root_path.'/view/header.php';
 
 <div class="container">
 <hr></hr>
-  <h2>UTWÓRZ MOJE KONTO</h2>
+  <h3>UTWÓRZ MOJE KONTO</h3>
   <form id="form">
     <div class="form-group">
       <label for="login">LOGIN</label>
@@ -72,14 +71,14 @@ include $conf->root_path.'/view/header.php';
       <section class="jumbotron text-center">
         <div class="container">
           <h2 class="jumbotron-heading"  style="color:#333333">REGULAMIN STRONY</h2>
-          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+          <p class="lead text-muted"> </p>
         </div>
       </section>
 </div>
 <hr></hr>
       <footer class="text-muted">
       <div class="container">
-        <p>Nazwa strony &copy; Autorzy: Maciej Ciosk, Anna Grzywnowicz </p>
+        <p>PhotoAMApp &copy; Autorzy: Maciej Ciosk, Anna Grzywnowicz </p>
       </div>
     </footer>
 <script>
