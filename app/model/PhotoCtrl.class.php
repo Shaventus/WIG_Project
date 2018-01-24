@@ -32,7 +32,7 @@ class PhotoCtrl {
 
   //Delete localization
   public function delPhoto(){
-    $datas = $this->db->connector()->delete("localization", [
+    $datas = $this->db->connector()->delete("photo", [
       "idPhoto" => $_POST['idPhoto']
     ]);
     echo json_encode('ok');
@@ -40,8 +40,7 @@ class PhotoCtrl {
 
   //Add localization
   public function setPhoto(){
-    $datas = $this->db->connector()->insert("localization", [
-      "latiitude" => $_POST['latiitude'],
+    $datas = $this->db->connector()->insert("photo", [
 			"path" => $_POST['path'],
       "description" => $_POST['description'],
 			"Localization_idLocalization" => $_POST['LocalizatinoID'],

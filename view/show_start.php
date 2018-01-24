@@ -33,7 +33,7 @@ include $conf->root_path.'/view/header.php';
           <a href="#" class="navbar-brand d-flex align-items-center">
             <strong>Nazwa</strong>
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler btn" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
@@ -52,6 +52,19 @@ include $conf->root_path.'/view/header.php';
 	 <div id="out"></div>
 	 </div>
       </section>
+
+      <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Miejscowość</th>
+          <th scope="col">Szerokość</th>
+          <th scope="col">Długość</th>
+          <th scope="col">Opcje</th>
+        </tr>
+      </thead>
+      <tbody class ="loc-wrap">
+      </tbody>
+    </table>
 <hr></hr>
 </div>
 <!-- /.container -->
@@ -107,9 +120,37 @@ function geoFindMe() {
   });
 */
 
+$( document ).ready(function() {
+  var dataA = null;
+  var response = $.ajax({
+    type: "POST",
+    url: "<?php echo $conf->app_root.'/account/locall' ?>",
+    dataType : 'json',
+    async: false,
+    data: {
+    },
+    success: function(json){
+      for (var i = 0; i < json.length; i++) {
+        var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
+        $(el).hide().prependTo('.loc-wrap').fadeIn(1000);
+      }
+
+    }
+  }).responseText;
+  //alert(response);
+});
+
+
 $("#AddLocation").click( function()
   {
     window.location.replace("<?php echo $conf->app_root.'/view/addLocation' ?>");
   }
 );
+
+$( document ).on('click', '.selectCity' , function(event){
+  console.log($(this).data('id'));
+  var iddata = $(this).data().id;
+  window.location.replace("<?php echo $conf->app_root.'/view/editLocation/' ?>" + iddata);
+  //alert(response);
+});
 </script>

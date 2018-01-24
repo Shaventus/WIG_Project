@@ -44,16 +44,16 @@ include $conf->root_path.'/view/header.php';
 <div class="container">
 <hr></hr>
   <h2>UTWÓRZ NOWĄ MIEJSCOWOŚĆ</h2>
-  <button onclick="geoFindMe()" class="btn btn-danger btn-lg">POKAŻ MOJĄ LOKALIZACJĘ</button>
+  <button onclick="geoFindMe()" class="btn btn-danger btn-lg">POKAŻ LOKALIZACJĘ MIEJSCOWOŚCI</button>
   <div id="out">
 
   </div>
   <form id="form">
     <div class="form-group">
       <label for="login">Nazwa miejscowości</label>
-      <input type="text" class="form-control" id="inputLogin" placeholder="Nazwa miejscowości">
+      <input type="text" class="form-control" id="inputloc"/>
     </div>
-    <button type="submit" class="btn btn-primary btn-lg">DODAJ MIEJSCOWOŚĆ</button>
+    <button type="submit" class="btn btn-primary btn-lg">Edytuj MIEJSCOWOŚĆ</button>
     <button type="button" class="btn btn-danger btn-lg" id="Back">POWRÓT NA STRONE GŁOWNĄ</button>
   </form>
 <hr></hr>
@@ -74,6 +74,7 @@ include $conf->root_path.'/view/header.php';
         <p>Nazwa strony &copy; Autorzy: Maciej Ciosk, Anna Grzywnowicz </p>
       </div>
     </footer>
+
 <script>
 
 function geoFindMe() {
@@ -105,13 +106,36 @@ function geoFindMe() {
   navigator.geolocation.getCurrentPosition(success, error);
 }
 
+
 $( document ).ready(function() {
+  <?php
+        $request = str_replace($conf->app_root."/", "", $_SERVER['REQUEST_URI']);
+        $params = mb_split("/", $request);
+   ?>
+
+   console.log(<?php echo $params[2]; ?>);
+
+     var response = $.ajax({
+       type: "POST",
+       url: "<?php echo $conf->app_root.'/account/loccu' ?>",
+       dataType : 'json',
+       async: false,
+       data: {
+         id : "<?php echo $params[2]; ?>"
+       },
+       success: function(json){
+       }
+     }).responseText;
+
+     alert(response);
 
     $("#Back").click( function()
       {
         window.location.replace("<?php echo $conf->app_root.'/view/start' ?>");
       }
     );
+
+
 });
 
 </script>

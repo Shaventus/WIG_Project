@@ -39,6 +39,11 @@ if ($params[0] == "view"){
 		$ctrl = new ShowCtrl(null);
 		$ctrl->showAddLocation();
 	}
+	if ($params[1] == "editLocation"){
+		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
+		$ctrl = new ShowCtrl(null);
+		$ctrl->showEditLocation($params[2]);
+	}
 }
 
 // AJAX requests
@@ -46,33 +51,60 @@ if ($params[0] == "account"){
 	if ( isset($params[1]) && ($params[1] == "cu") ) {
 		global $conf;
 		include_once $conf->root_path.'/app/model/AccountCtrl.class.php';
-		$ctrl = new AccountCtrl(null);
+		$ctrl = new AccountCtrl();
 		$ctrl->getAccount();
 	}
 	if ( isset($params[1]) && ($params[1] == "all") ) {
 		global $conf;
 		include_once $conf->root_path.'/app/model/AccountCtrl.class.php';
-		$ctrl = new AccountCtrl(null);
+		$ctrl = new AccountCtrl();
 		$ctrl->getAccounts();
 	}
 	if ( isset($params[1]) && ($params[1] == "del") ) {
 		global $conf;
 		include_once $conf->root_path.'/app/model/AccountCtrl.class.php';
-		$ctrl = new AccountCtrl(null);
+		$ctrl = new AccountCtrl();
 		$ctrl->delAccount();
 	}
 	if ( isset($params[1]) && ($params[1] == "set") ) {
 		global $conf;
 		include_once $conf->root_path.'/app/model/AccountCtrl.class.php';
-		$ctrl = new AccountCtrl(null);
+		$ctrl = new AccountCtrl();
 		$ctrl->setAccount();
 	}
 	if ( isset($params[1]) && ($params[1] == "registr") ) {
+		global $conf;
 		include_once $conf->root_path.'/app/model/AccountCtrl.class.php';
-		$ctrl = new AccountCtrl(null);
+		$ctrl = new AccountCtrl();
 		$ctrl->doRegistr();
 	}
 
+	if ( isset($params[1]) && ($params[1] == "locall") ) {
+		global $conf;
+		include_once $conf->root_path.'/app/model/LocalizationCtrl.class.php';
+		$ctrl = new LocalizationCtrl();
+		$ctrl->getLocalizations();
+	}
+
+	if ( isset($params[1]) && ($params[1] == "loccu") ) {
+		global $conf;
+		include_once $conf->root_path.'/app/model/LocalizationCtrl.class.php';
+		$ctrl = new LocalizationCtrl();
+		$ctrl->getLocalization();
+	}
+	if ( isset($params[1]) && ($params[1] == "locdel") ) {
+		global $conf;
+		include_once $conf->root_path.'/app/model/LocalizationCtrl.class.php';
+		$ctrl = new LocalizationCtrl();
+		$ctrl->delLocalization();
+	}
+	if ( isset($params[1]) && ($params[1] == "locset") ) {
+		global $conf;
+		include_once $conf->root_path.'/app/model/LocalizationCtrl.class.php';
+		$ctrl = new LocalizationCtrl();
+		$ctrl->setLocalization();
+	}
 }
+
 
 ?>

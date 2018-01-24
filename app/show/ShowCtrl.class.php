@@ -32,4 +32,9 @@ class ShowCtrl {
 		include $conf->root_path.'/view/'.'show_addlocation.php';
 	}
 
+	public function showEditLocation($number){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_editlocation.php';
+	}
+
 }

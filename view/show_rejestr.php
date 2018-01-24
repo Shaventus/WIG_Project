@@ -40,7 +40,7 @@ include $conf->root_path.'/view/header.php';
       </div>
 	  </div>
     </header>
-	
+
 <div class="container">
 <hr></hr>
   <h2>UTWÓRZ MOJE KONTO</h2>
@@ -111,20 +111,14 @@ $( document ).ready(function() {
           if (json[0]['status'] == 'err'){
 						$('#msg').html('Wprowadzone dane są nieprawidłowe');
 						$('#msg').show();
-						$("#inputPassword").val('');
-						$("#inputPassword").prop('disabled', true);
-						setTimeout(function() {
-							$('#msg').fadeOut('slow');
-							$("#inputPassword").prop('disabled', false);
-						}, 5000);
 					}
-					else if (json[0]['status'] == 'ok'){
+					else if (json != "0"){
 						window.location.replace("<?php echo $conf->app_root.'/view/login' ?>");
-					} else if(json == "0"){
+					}
+
+          if(json == "0"){
             $('#msg').html('Nazwa konta już jest zajęta');
 						$('#msg').show();
-						$("#inputPassword").val('');
-						$("#inputPassword").prop('disabled', true);
           }
         }
       }) .responseText;

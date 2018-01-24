@@ -44,7 +44,7 @@ class AccountCtrl {
       "pass" => $_POST['pass'],
       "email" => $_POST['email'],
     ]);
-    echo json_encode($datas);
+    echo json_encode("$datas");
   }
 
 	public function doRegistr(){
