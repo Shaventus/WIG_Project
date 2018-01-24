@@ -46,7 +46,7 @@ include $conf->root_path.'/view/header.php';
       <section class="jumbotron text-center" style="color:#333333">
         <div class="container">
                    <h1 class="jumbotron-heading" style="color:#333333"><i class="fa fa-camera-retro" aria-hidden="true"></i></h1>
-		  <p class="lead text-muted">HOME. Główna strona aplikacji. Tabela pokazuje miejscowości wraz ze szczegółową lokalizacją. W celu dodania nowej miejscowości bądź sprawdzenia własnej lokalizacji należy skorzystać z poniższych opcji.</p>
+		  <p class="lead text-muted">HOME. Główna strona aplikacji. Tabela pokazuje wszystkie dodane miejscowości wraz ze szczegółową lokalizacją. W celu dodania nowej miejscowości bądź sprawdzenia własnej lokalizacji należy skorzystać z poniższych opcji.</p>
 		</div>
       </section>
 <hr></hr>
@@ -71,7 +71,7 @@ include $conf->root_path.'/view/header.php';
 <!-- /.container -->
       <footer class="text-muted">
       <div class="container">
-        <p>Nazwa strony &copy; Autorzy: Maciej Ciosk, Anna Grzywnowicz </p>
+        <p>Panda3App &copy; Autorzy: Maciej Ciosk, Anna Grzywnowicz </p>
       </div>
     </footer>
 

@@ -76,7 +76,7 @@ include $conf->root_path.'/view/header.php';
 
 	  <footer class="text-muted">
       <div class="container">
-        <p>Nazwa strony &copy; Autorzy: Maciej Ciosk, Anna Grzywnowicz </p>
+        <p>Panda3App &copy; Autorzy: Maciej Ciosk, Anna Grzywnowicz </p>
       </div>
     </footer>
 
