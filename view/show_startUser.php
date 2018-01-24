@@ -60,7 +60,9 @@ include $conf->root_path.'/view/header.php';
           <th scope="col">Miejscowość</th>
           <th scope="col">Szerokość</th>
           <th scope="col">Długość</th>
-          <th scope="col">Opcje</th>
+          <th scope="col">Podgląd</th>
+          <th scope="col">Edycja</th>
+          <th scope="col">Usuń</th>
         </tr>
       </thead>
       <tbody class ="loc-wrap">
@@ -125,15 +127,19 @@ $( document ).ready(function() {
   var dataA = null;
   var response = $.ajax({
     type: "POST",
-    url: "<?php echo $conf->app_root.'/account/locall' ?>",
+    url: "<?php echo $conf->app_root.'/account/localluser' ?>",
     dataType : 'json',
     async: false,
     data: {
     },
     success: function(json){
       for (var i = 0; i < json.length; i++) {
-        var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
+        var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +
+        "</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] +
+        " name='Podgląd'>Przycisk</button></td> <td><button class='btn EditCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Edycja</button></td><td><button class='btn deleteCity' data-id="
+         + json[i]['idLocalization'] + " name='Przycisk'>Usuń</button></td></tr>";
         $(el).hide().prependTo('.loc-wrap').fadeIn(1000);
+        $(el).hide().prependTo('.loc-wrap').fadeOut(1000);
       }
 
     }
@@ -149,9 +155,29 @@ $("#AddLocation").click( function()
 );
 
 $( document ).on('click', '.selectCity' , function(event){
-  console.log($(this).data('id'));
+  //console.log($(this).data('id'));
   var iddata = $(this).data().id;
-  window.location.replace("<?php echo $conf->app_root.'/view/showLocation/' ?>" + iddata);
+  window.location.replace("<?php echo $conf->app_root.'/view/editLocation/' ?>" + iddata);
   //alert(response);
+});
+
+$( document ).on('click', '.deleteCity' , function(event){
+  var iddata = $(this).data().id;
+
+  $( document ).ready(function() {
+    var response = $.ajax({
+      type: "POST",
+      url: "<?php echo $conf->app_root.'/account/locdel' ?>",
+      dataType : 'json',
+      async: false,
+      data: {
+        id: iddata
+      },
+      success: function(json){
+      }
+    }).responseText;
+    //alert(response);
+  });
+  $(this).parent().parent().fadeOut();
 });
 </script>

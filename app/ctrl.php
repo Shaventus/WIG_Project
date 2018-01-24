@@ -20,9 +20,16 @@ if ($params[0] == "logout"){
 // View routing
 if ($params[0] == "view"){
 	if ($params[1] == "start"){
+		include $conf->root_path.'/app/security/user.php';
 		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
 		$ctrl = new ShowCtrl(null);
 		$ctrl->showStart();
+	}
+	if ($params[1] == "userloca"){
+		include $conf->root_path.'/app/security/user.php';
+		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
+		$ctrl = new ShowCtrl(null);
+		$ctrl->showStartuser();
 	}
 	if ($params[1] == "login"){
 		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
@@ -35,11 +42,19 @@ if ($params[0] == "view"){
 		$ctrl->showRejestr();
 	}
 	if ($params[1] == "addLocation"){
+		include $conf->root_path.'/app/security/user.php';
 		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
 		$ctrl = new ShowCtrl(null);
 		$ctrl->showAddLocation();
 	}
+	if ($params[1] == "showLocation"){
+		include $conf->root_path.'/app/security/user.php';
+		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
+		$ctrl = new ShowCtrl(null);
+		$ctrl->showShowLocation();
+	}
 	if ($params[1] == "editLocation"){
+		include $conf->root_path.'/app/security/user.php';
 		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
 		$ctrl = new ShowCtrl(null);
 		$ctrl->showEditLocation($params[2]);
@@ -84,6 +99,13 @@ if ($params[0] == "account"){
 		include_once $conf->root_path.'/app/model/LocalizationCtrl.class.php';
 		$ctrl = new LocalizationCtrl();
 		$ctrl->getLocalizations();
+	}
+
+	if ( isset($params[1]) && ($params[1] == "localluser") ) {
+		global $conf;
+		include_once $conf->root_path.'/app/model/LocalizationCtrl.class.php';
+		$ctrl = new LocalizationCtrl();
+		$ctrl->getUserLocalizations();
 	}
 
 	if ( isset($params[1]) && ($params[1] == "loccu") ) {

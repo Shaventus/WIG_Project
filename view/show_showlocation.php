@@ -43,21 +43,12 @@ include $conf->root_path.'/view/header.php';
 
 <div class="container">
 <hr></hr>
-  <h2>UTWÓRZ NOWĄ MIEJSCOWOŚĆ</h2>
+  <h2>MIEJSCOWOŚĆ</h2>
 
   <!-- <button onclick="geoFindMe()" class="btn btn-danger btn-lg">POKAŻ LOKALIZACJĘ MIEJSCOWOŚCI</button>  -->
   <div id="out">
-    <h3 id="lat"></h3> <h3 id="long"> </h3>
+    <h3 id="lat"></h3> <h3 id="long"> </h3> <h3 id="inputloc"></h3>
   </div>
-  <form id="form">
-    <div class="form-group">
-      <label for="login">Nazwa miejscowości</label>
-      <input type="text" class="form-control inputloc" id="inputloc">
-      </input>
-    </div>
-    <button type="submit" class="btn btn-primary btn-lg">Edytuj MIEJSCOWOŚĆ</button>
-    <button type="button" class="btn btn-danger btn-lg" id="Back">POWRÓT NA STRONE GŁOWNĄ</button>
-  </form>
 <hr></hr>
   <div class="alert alert-danger alert-dismissable" id="msg" style="display: none"></div>
 
@@ -127,7 +118,7 @@ $( document ).ready(function() {
        },
        success: function(json){
          //console.log(json[0]['name'])
-         $('input.inputloc').val(json[0]['name']);
+         $('#inputloc').append("Nazwa miejscowości: " + json[0]['name']);
          $('#lat').append("Szerokość: " + json[0]['latitude'] + "°");
          $('#long').append("Długość geograficzna: " + json[0]['longitude'] + "°");
        }

@@ -37,4 +37,14 @@ class ShowCtrl {
 		include $conf->root_path.'/view/'.'show_editlocation.php';
 	}
 
+	public function showStartuser(){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_startUser.php';
+	}
+
+	public function showShowLocation(){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_showlocation.php';
+	}
+
 }

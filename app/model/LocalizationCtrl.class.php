@@ -17,6 +17,19 @@ class LocalizationCtrl {
 		echo json_encode($datas);
 	}
 
+	public function getUserLocalizations(){
+		$datas = $this->db->connector()->select("Localization", [
+			"idLocalization",
+			"latitude",
+			"longitude",
+			"name",
+			"Account_idAccount"],[
+			"ORDER" => "idLocalization DESC",
+			"Account_idAccount" => $_SESSION["id"]
+		]);
+		echo json_encode($datas);
+	}
+
   //Show currect localization
 	public function getLocalization(){
 		$id = $_POST['id'];
@@ -42,10 +55,10 @@ class LocalizationCtrl {
   //Add localization
   public function setLocalization(){
     $datas = $this->db->connector()->insert("Localization", [
-      "latitude" => $_POST['latiitude'],
+      "latitude" => $_POST['latitude'],
 			"longitude" => $_POST['longitude'],
 			"name" => $_POST['name'],
-      "Account_idAccount" => $_POST['AccountID'],
+      "Account_idAccount" => $_SESSION["id"],
     ]);
     echo json_encode($datas);
   }

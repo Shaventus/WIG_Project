@@ -73,4 +73,9 @@ class LoginCtrl{
 		global $conf;
 		header("Location: ".$conf->app_url."/view/login");
 	}
+	public function redirect(){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_login.php';
+		exit();
+	}
 }
