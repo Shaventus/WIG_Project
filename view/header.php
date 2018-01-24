@@ -59,10 +59,18 @@ if (!isset($_SESSION)){
 
 	</head>
     <body>
-			<div class="container">
-				<?php
-					if (isset($_SESSION["name"])){
-						echo '<p class="btn btn-default">Zalogowany jako: <strong class="btn-default">'.$_SESSION["name"].'      </strong>    <a class="btn-danger" href="'.$conf->app_root.'/logout'.'">Logout</a></p>';
-					}
-					?>
-			</div>
+	<p></p>
+	<div class="container">
+	<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Panel użytkownika</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" href="#">Wyloguj</a>
+  </li>
+</ul>
+		</div>
+
