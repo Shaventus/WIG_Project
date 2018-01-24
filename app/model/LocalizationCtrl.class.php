@@ -19,12 +19,14 @@ class LocalizationCtrl {
 
   //Show currect localization
 	public function getLocalization(){
+		$id = $_POST['id'];
 		$datas = $this->db->connector()->select("Localization", [
-			"idLocalization" => $_POST['id'],
+      "idLocalization",
+			"name",
 			"latitude",
 			"longitude",
-			"name"],[
-	    "ORDER" => "idLocalization DESC"
+			"Account_idAccount"],[
+			"idLocalization" => $_POST['id']
 		]);
 		echo json_encode($datas);
 	}

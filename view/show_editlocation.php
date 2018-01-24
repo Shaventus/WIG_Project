@@ -51,7 +51,8 @@ include $conf->root_path.'/view/header.php';
   <form id="form">
     <div class="form-group">
       <label for="login">Nazwa miejscowości</label>
-      <input type="text" class="form-control" id="inputloc"/>
+      <input type="text" class="form-control inputloc" id="inputloc">
+      </input>
     </div>
     <button type="submit" class="btn btn-primary btn-lg">Edytuj MIEJSCOWOŚĆ</button>
     <button type="button" class="btn btn-danger btn-lg" id="Back">POWRÓT NA STRONE GŁOWNĄ</button>
@@ -124,10 +125,11 @@ $( document ).ready(function() {
          id : "<?php echo $params[2]; ?>"
        },
        success: function(json){
+         //console.log(json[0]['name'])
+         $('input.inputloc').val(json[0]['name']);
        }
      }).responseText;
-
-     alert(response);
+     //alert(response);
 
     $("#Back").click( function()
       {
