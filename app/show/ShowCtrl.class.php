@@ -52,4 +52,9 @@ class ShowCtrl {
 		include $conf->root_path.'/view/'.'show_panelużytkownika.php';
 	}
 
+	public function showAddPhoto(){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_addphoto.php';
+	}
+
 }

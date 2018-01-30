@@ -65,6 +65,18 @@ if ($params[0] == "view"){
 		$ctrl = new ShowCtrl(null);
 		$ctrl->showUserPanel();
 	}
+	if ($params[1] == "addphoto"){
+		include $conf->root_path.'/app/security/user.php';
+		include_once $conf->root_path.'/app/show/ShowCtrl.class.php';
+		$ctrl = new ShowCtrl(null);
+		$ctrl->showAddPhoto();
+	}
+	if ($params[1] == "addphoto" && $params[2] == "upload.php"){
+		include $conf->root_path.'/app/security/user.php';
+		include_once $conf->root_path.'/app/model/PhotoCtrl.class.php';
+		$ctrl = new PhotoCtrl();
+		$ctrl->uploadPhoto();
+	}
 }
 
 // AJAX requests

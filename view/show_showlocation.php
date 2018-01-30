@@ -137,7 +137,7 @@ $( document ).ready(function() {
 
     $("#AddPhoto").click( function()
       {
-        window.location.replace("<?php echo $conf->app_root.'/view/start' ?>");
+        window.location.replace("<?php echo $conf->app_root.'/view/addphoto/' ?>" + "<?php echo $params[2] ?>");
       }
     );
 
@@ -150,8 +150,10 @@ $( document ).ready(function() {
         idLocalization : "<?php echo $params[2]; ?>"
       },
       success: function(json){
+        console.log(json)
         for (var i = 0; i < json.length; i++) {
-          var el = '<img src="<?php echo $conf->app_root;?>/data/' + json[i]['path'] + '" class="img-responsive" style="margin: auto"><br></br>';
+          console.log(json[i]);
+          var el = '<img src="<?php echo $conf->app_root;?>/app/data/' + json[i]['path'] + '" class="img-responsive" style="margin: auto"><br></br>';
           $(el).hide().prependTo('.img-wrap').fadeIn(1000);
         }
       }
