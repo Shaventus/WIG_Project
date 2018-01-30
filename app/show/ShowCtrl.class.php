@@ -47,4 +47,9 @@ class ShowCtrl {
 		include $conf->root_path.'/view/'.'show_showlocation.php';
 	}
 
+	public function showUserPanel(){
+		global $conf;
+		include $conf->root_path.'/view/'.'show_panelużytkownika.php';
+	}
+
 }

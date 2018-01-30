@@ -42,26 +42,21 @@ include $conf->root_path.'/view/header.php';
 
 <div class="container">
 <hr></hr>
-  <h3>UTWÓRZ MOJE KONTO</h3>
+  <h3>MOJE KONTO</h3>
   <form id="form">
     <div class="form-group">
       <label for="login">LOGIN</label>
-      <input type="text" class="form-control" id="inputLogin" placeholder="Login">
+      <input type="text" class="form-control" id="inputLogin">
     </div>
     <div class="form-group">
       <label for="password">HASŁO</label>
-      <input type="password" class="form-control" id="inputPassword" placeholder="Hasło">
+      <input type="password" class="form-control" id="inputPassword">
     </div>
     <div class="form-group">
       <label for="email">EMAIL</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      <input type="email" class="form-control" id="inputEmail">
     </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Zgadzam się z regulaminem strony</label>
-    </div>
-    <button type="submit" class="btn btn-primary btn-lg">UTWÓRZ KONTO</button>
-    <button type="button" class="btn btn-danger btn-lg" id="Back">POWRÓT DO STRONY LOGOWANIA</button>
+    <button type="submit" class="btn btn-primary btn-lg">ZMODYFIKUJ KONTO</button>
   </form>
 <hr></hr>
   <div class="alert alert-danger alert-dismissable" id="msg" style="display: none"></div>
@@ -84,6 +79,24 @@ include $conf->root_path.'/view/header.php';
 <script>
 
 $( document ).ready(function() {
+
+  var response = $.ajax({
+    type: "POST",
+    url: "<?php echo $conf->app_root.'/account/cu' ?>",
+    dataType : 'json',
+    async: false,
+    data: {
+      id : "<?php echo $_SESSION["id"]; ?>"
+    },
+    success: function(json){
+      //console.log(json[0]['name'])
+      $('#inputLogin').val(json[0]['login']);
+      $('#inputPassword').val(json[0]['pass']);
+      $('#inputEmail').val(json[0]['email']);
+    }
+  }).responseText;
+  //alert(response);
+
   $('#form').submit(function(e) {
     e.preventDefault();
     var login = $("#inputLogin").val();
@@ -98,13 +111,14 @@ $( document ).ready(function() {
 		} else {
     var response = $.ajax({
         type: "POST",
-        url: "<?php echo $conf->app_root.'/account/registr' ?>",
+        url: "<?php echo $conf->app_root.'/account/edituser' ?>",
         dataType : 'json',
         async: false,
         data: {
           login : login,
           pass : pass,
-          email : email
+          email : email,
+          userid : "<?php echo $_SESSION["id"]; ?>"
         },
         success: function(json){
           if (json[0]['status'] == 'err'){
@@ -112,7 +126,7 @@ $( document ).ready(function() {
 						$('#msg').show();
 					}
 					else if (json != "0"){
-						window.location.replace("<?php echo $conf->app_root.'/view/login' ?>");
+						window.location.replace("<?php echo $conf->app_root.'/view/userpanel' ?>");
 					}
 
           if(json == "0"){
@@ -121,15 +135,11 @@ $( document ).ready(function() {
           }
         }
       }) .responseText;
-      alert(response);
+      //alert(response);
     }
     });
 
-    $("#Back").click( function()
-      {
-        window.location.replace("<?php echo $conf->app_root.'/view/login' ?>");
-      }
-    );
+
 });
 
 </script>

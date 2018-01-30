@@ -50,7 +50,8 @@ include $conf->root_path.'/view/header.php';
   </div>
 <hr></hr>
   <div class="alert alert-danger alert-dismissable" id="msg" style="display: none"></div>
-
+<button type="button" class="btn btn-primary" id="AddPhoto">DODAJ ZDJĘCIE</button>
+<br></br>
 <div class="container">
     <main role="main">
       <section class="jumbotron text-center">
@@ -59,6 +60,10 @@ include $conf->root_path.'/view/header.php';
           <p class="lead text-muted"> Zdjęcia dotyczące owej lokalizacji.</p>
         </div>
       </section>
+      <br>
+      <div class="img-wrap">
+
+      </div>
 </div>
 <hr></hr>
       <footer class="text-muted">
@@ -129,6 +134,30 @@ $( document ).ready(function() {
         window.location.replace("<?php echo $conf->app_root.'/view/start' ?>");
       }
     );
+
+    $("#AddPhoto").click( function()
+      {
+        window.location.replace("<?php echo $conf->app_root.'/view/start' ?>");
+      }
+    );
+
+    var response = $.ajax({
+      type: "POST",
+      url: "<?php echo $conf->app_root.'/account/locphotos' ?>",
+      dataType : 'json',
+      async: false,
+      data: {
+        idLocalization : "<?php echo $params[2]; ?>"
+      },
+      success: function(json){
+        for (var i = 0; i < json.length; i++) {
+          var el = '<img src="<?php echo $conf->app_root;?>/data/' + json[i]['path'] + '" class="img-responsive" style="margin: auto"><br></br>';
+          $(el).hide().prependTo('.img-wrap').fadeIn(1000);
+        }
+      }
+    }).responseText;
+    //alert(response);
+
 
 
 });

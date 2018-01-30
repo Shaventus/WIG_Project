@@ -1,7 +1,7 @@
 <?php
 class AccountCtrl {
 	public $db;
-	private $login, $pass, $email;
+	private $login, $pass, $email, $id;
 	public function __construct(){
 		$this->db = new DatabaseCtrl();
 	}
@@ -20,11 +20,25 @@ class AccountCtrl {
   //Show currect account
 	public function getAccount(){
 		$datas = $this->db->connector()->select("account", [
-			"idAccount" => $_POST['LoginId'],
+			"idAccount",
 	    "login",
 	    "pass",
 	    "email"],[
-	    "ORDER" => "idAccount DESC"
+	    "ORDER" => "idAccount DESC",
+			"idAccount" => $_SESSION["id"]
+		]);
+		echo json_encode($datas);
+	}
+
+	//Show logged account
+	public function getAccountUser(){
+		$datas = $this->db->connector()->select("account", [
+			"idAccount",
+			"login",
+			"pass",
+			"email"],[
+			"ORDER" => "idAccount DESC",
+			"idAccount" => $_SESSION["id"]
 		]);
 		echo json_encode($datas);
 	}
@@ -47,6 +61,18 @@ class AccountCtrl {
     echo json_encode("$datas");
   }
 
+	//Edit account
+	public function EditAccount(){
+		$datas = $this->db->connector()->update("account", [
+			"login" => $_POST['login'],
+			"pass" => $_POST['pass'],
+			"email" => $_POST['email'],
+		],[
+			"idAccount" => $_POST["userid"]
+		]);
+		echo json_encode("$datas");
+	}
+
 	public function doRegistr(){
 		global $conf;
 		$this->validate();
@@ -64,12 +90,13 @@ class AccountCtrl {
 			exit();
 		}
 
-		$datas = $this->db->connector()->insert("account", [
-			"login" => $this->login,
-			"pass" => $this->pass,
-			"email" => $this->email,
-			"Role_idRole" => 2
-		]);
+			$datas = $this->db->connector()->insert("account", [
+				"login" => $this->login,
+				"pass" => $this->pass,
+				"email" => $this->email,
+				"Role_idRole" => 2
+			]);
+
 		echo json_encode($datas);
 	}
 

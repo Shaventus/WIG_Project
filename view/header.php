@@ -72,7 +72,7 @@ if (!isset($_SESSION)){
 		echo '		<a class="nav-link" id="logout" href="'.$conf->app_root.'/view/userloca'.'">Miejscowości użytkownika</a>';
 		echo '	</li>';
   	echo '	<li class="nav-item">';
-    echo '		<a class="nav-link" id="userPanel" href="'.$conf->app_root.'/view/start'.'"> Panel użytkownika</a>';
+    echo '		<a class="nav-link" id="userPanel" href="'.$conf->app_root.'/view/userpanel'.'"> Panel użytkownika</a>';
   	echo '	</li>';
     echo '		<li class="nav-item">';
     echo '		<a class="nav-link" id="logout" href="'.$conf->app_root.'/logout'.'">Wyloguj</a>';
