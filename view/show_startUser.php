@@ -220,6 +220,13 @@ $("#AddLocation").click( function()
 );
 
 $( document ).on('click', '.selectCity' , function(event){
+  console.log($(this).data('id'));
+  var iddata = $(this).data().id;
+  window.location.replace("<?php echo $conf->app_root.'/view/showLocation/' ?>" + iddata);
+  //alert(response);
+});
+
+$( document ).on('click', '.EditCity' , function(event){
   //console.log($(this).data('id'));
   var iddata = $(this).data().id;
   window.location.replace("<?php echo $conf->app_root.'/view/editLocation/' ?>" + iddata);

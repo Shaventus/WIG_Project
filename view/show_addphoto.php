@@ -55,7 +55,7 @@ print_r($_FILES);
       <textarea type="text" class="form-control" id="inputdescription" name="description" placeholder="Opis"></textarea>
     </div>
     <div class="form-group">
-      Select image to upload:
+      Wybierz zdjęcie do dodania:
       <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
     </div>
     <button type="submit" class="btn btn-primary btn-lg" value="Upload Image" name="submit">DODAJ ZDJĘCIE</button>
