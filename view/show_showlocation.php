@@ -48,6 +48,28 @@ include $conf->root_path.'/view/header.php';
   <div id="out">
     <h3 id="lat"></h3> <h3 id="long"> </h3> <h3 id="inputloc"></h3>
   </div>
+  <div class="BlueHour1">
+
+  </div>
+  <div class="Sunrise">
+
+  </div>
+  <div class="GoldenHour1">
+
+  </div>
+  <div class="Daytime">
+
+  </div>
+  <div class="GoldenHour2">
+
+  </div>
+  <div class="Sunset">
+
+  </div>
+  <div class="BlueHour2">
+
+  </div>
+
 <hr></hr>
   <div class="alert alert-danger alert-dismissable" id="msg" style="display: none"></div>
 <button type="button" class="btn btn-primary" id="AddPhoto">DODAJ ZDJĘCIE</button>
@@ -125,6 +147,44 @@ $( document ).ready(function() {
          $('#inputloc').append("Nazwa miejscowości: " + json[0]['name']);
          $('#lat').append("Szerokość: " + json[0]['latitude'] + "°");
          $('#long').append("Długość geograficzna: " + json[0]['longitude'] + "°");
+
+         var response = $.ajax({
+           type: "POST",
+           url: "https://api.sunrise-sunset.org/json?lat="+ json[0]['latitude'] +"&lng=" + json[0]['longitude'] + '&date=today&formatted=0',
+           dataType : 'json',
+           async: false,
+           data: {
+           },
+           success: function(data){
+             var d = new Date(data['results']['nautical_twilight_begin']);
+             var el = '<h2>Niebieska godzina: '+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + '</h2>';
+             $(el).hide().prependTo('.BlueHour1').fadeIn(1000);
+
+             var d = new Date(data['results']['sunrise']);
+             var el = '<h2>Wschód słońca: '+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + '</h2>';
+             $(el).hide().prependTo('.Sunrise').fadeIn(1000);
+
+             var d = new Date(data['results']['solar_noon']);
+             var el = '<h2>Czas dzienny: '+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + '</h2>';
+             $(el).hide().prependTo('.Daytime').fadeIn(1000);
+
+             var d = new Date(data['results']['civil_twilight_begin']);
+             var el = '<h2>Złota godzina: '+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + '</h2>';
+             $(el).hide().prependTo('.GoldenHour1').fadeIn(1000);
+
+             var d = new Date(data['results']['civil_twilight_end']);
+             var el = '<h2>Złota godzina: '+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + '</h2>';
+             $(el).hide().prependTo('.GoldenHour2').fadeIn(1000);
+
+             var d = new Date(data['results']['sunset']);
+             var el = '<h2>Zachód słońca: '+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + '</h2>';
+             $(el).hide().prependTo('.Sunset').fadeIn(1000);
+
+             var d = new Date(data['results']['nautical_twilight_end']);
+             var el = '<h2>Niebieska godzina: '+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + '</h2>';
+             $(el).hide().prependTo('.BlueHour2').fadeIn(1000);
+           }
+         }).responseText;
        }
      }).responseText;
      //alert(response);

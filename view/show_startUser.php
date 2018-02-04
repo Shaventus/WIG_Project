@@ -141,7 +141,7 @@ $( document ).ready(function() {
     },
     success: function(json){
       for (var i = 0; i < json.length; i++) {
-        var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +
+        var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'].substring(0, 8) +"</td><td>" + json[i]['longitude'].substring(0, 8) +
         "</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] +
         " name='Podgląd'>Przycisk</button></td> <td><button class='btn EditCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Edycja</button></td><td><button class='btn deleteCity' data-id="
          + json[i]['idLocalization'] + " name='Przycisk'>Usuń</button></td></tr>";
@@ -169,7 +169,7 @@ $( document ).ready(function() {
           success: function(json){
             if(json.length > 0){
               for (var i = 0; i < json.length; i++) {
-                var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +
+                var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'].substring(0, 8) +"</td><td>" + json[i]['longitude'].substring(0, 8) +
                 "</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] +
                 " name='Podgląd'>Przycisk</button></td> <td><button class='btn EditCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Edycja</button></td><td><button class='btn deleteCity' data-id="
                  + json[i]['idLocalization'] + " name='Przycisk'>Usuń</button></td></tr>";
@@ -197,7 +197,7 @@ $( document ).ready(function() {
           },
           success: function(json){
             for (var i = 0; i < json.length; i++) {
-              var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +
+              var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'].substring(0, 8) +"</td><td>" + json[i]['longitude'].substring(0, 8) +
               "</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] +
               " name='Podgląd'>Przycisk</button></td> <td><button class='btn EditCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Edycja</button></td><td><button class='btn deleteCity' data-id="
                + json[i]['idLocalization'] + " name='Przycisk'>Usuń</button></td></tr>";

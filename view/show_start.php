@@ -130,6 +130,7 @@ function geoFindMe() {
 $( document ).ready(function() {
   var all = true;
   var dataA = null;
+
   var response = $.ajax({
     type: "POST",
     url: "<?php echo $conf->app_root.'/account/locall' ?>",
@@ -139,7 +140,7 @@ $( document ).ready(function() {
     },
     success: function(json){
       for (var i = 0; i < json.length; i++) {
-        var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
+        var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'].substring(0, 8) +"</td><td>" + json[i]['longitude'].substring(0, 8) +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
         $(el).hide().prependTo('.loc-wrap').fadeIn(1000);
       }
 
@@ -163,7 +164,7 @@ $( document ).ready(function() {
           success: function(json){
             if(json.length > 0){
               for (var i = 0; i < json.length; i++) {
-                var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
+                var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'].substring(0, 8) +"</td><td>" + json[i]['longitude'].substring(0, 8) +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
                 $(el).hide().prependTo('.loc-wrap').fadeIn(1000);
               }
             } else {
@@ -187,7 +188,7 @@ $( document ).ready(function() {
           },
           success: function(json){
             for (var i = 0; i < json.length; i++) {
-              var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
+              var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'].substring(0, 8) +"</td><td>" + json[i]['longitude'].substring(0, 8) +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
               $(el).hide().prependTo('.loc-wrap').fadeIn(1000);
             }
 
