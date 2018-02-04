@@ -50,9 +50,15 @@ include $conf->root_path.'/view/header.php';
 		</div>
       </section>
 <hr></hr>
-<button type="button" class="btn btn-primary" id="AddLocation">DODAJ MIEJSCOWOŚĆ</button>
+      <button type="button" class="btn btn-primary" id="AddLocation">DODAJ MIEJSCOWOŚĆ</button>
 	    <button onclick="geoFindMe()" class="btn btn-danger">POKAŻ MOJĄ LOKALIZACJĘ</button>
 		<div id="out"></div>
+    <hr></hr>
+    <form id="searchForm" class="form-signin" action="#" method="post">
+							<div id="roll" style="height:50px;">
+								<input id="search" type="text" style="position:relative;text-align: center;height: 48px; margin: 0px 0px 0px;border:0px;border-radius:0px; color: black;"  placeholder="Szukaj">
+							</div>
+			</form>
 <hr></hr>
       <table class="table">
       <thead>
@@ -122,6 +128,7 @@ function geoFindMe() {
 */
 
 $( document ).ready(function() {
+  var all = true;
   var dataA = null;
   var response = $.ajax({
     type: "POST",
@@ -139,6 +146,56 @@ $( document ).ready(function() {
     }
   }).responseText;
   //alert(response);
+  $("#search").on('input', function() {
+    var search = $(this).val();
+    if(search.length > 2){
+        $('.loc-wrap').html('');
+        all = false;
+        $('.loc-wrap').html('');
+        var response = $.ajax({
+          type: "POST",
+          url: "<?php echo $conf->app_root.'/account/locsearch' ?>",
+          dataType : 'json',
+          async: false,
+          data: {
+            search: search
+          },
+          success: function(json){
+            if(json.length > 0){
+              for (var i = 0; i < json.length; i++) {
+                var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
+                $(el).hide().prependTo('.loc-wrap').fadeIn(1000);
+              }
+            } else {
+              var el = "<h4>Nie znaleziono takiej miejscowości</h4>";
+              $(el).hide().prependTo('.loc-wrap').fadeIn(1000);
+            }
+
+          }
+        }).responseText;
+
+    } else {
+      if(all == false){
+        all = true;
+        $('.loc-wrap').html('');
+        var response = $.ajax({
+          type: "POST",
+          url: "<?php echo $conf->app_root.'/account/locall' ?>",
+          dataType : 'json',
+          async: false,
+          data: {
+          },
+          success: function(json){
+            for (var i = 0; i < json.length; i++) {
+              var el = "<tr><td>" + json[i]['name'] +"</td><td>" + json[i]['latitude'] +"</td><td>" + json[i]['longitude'] +"</td><td><button class='btn selectCity' data-id=" + json[i]['idLocalization'] + " name='Przycisk'>Przycisk</button></td></tr>";
+              $(el).hide().prependTo('.loc-wrap').fadeIn(1000);
+            }
+
+          }
+        }).responseText;
+      }
+    }
+  })
 });
 
 

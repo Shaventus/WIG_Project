@@ -156,6 +156,18 @@ if ($params[0] == "account"){
 		$ctrl = new LocalizationCtrl();
 		$ctrl->setLocalization();
 	}
+	if ($params[1] == "locsearch"){
+		include $conf->root_path.'/app/security/user.php';
+		include_once $conf->root_path.'/app/model/LocalizationCtrl.class.php';
+		$ctrl = new LocalizationCtrl();
+		$ctrl->searchLocalization();
+	}
+	if ($params[1] == "locusersearch"){
+		include $conf->root_path.'/app/security/user.php';
+		include_once $conf->root_path.'/app/model/LocalizationCtrl.class.php';
+		$ctrl = new LocalizationCtrl();
+		$ctrl->searchUserLocalization();
+	}
 
 	if ( isset($params[1]) && ($params[1] == "locphotos") ) {
 		global $conf;

@@ -32,7 +32,6 @@ class LocalizationCtrl {
 
   //Show currect localization
 	public function getLocalization(){
-		$id = $_POST['id'];
 		$datas = $this->db->connector()->select("Localization", [
       "idLocalization",
 			"name",
@@ -40,6 +39,35 @@ class LocalizationCtrl {
 			"longitude",
 			"Account_idAccount"],[
 			"idLocalization" => $_POST['id']
+		]);
+		echo json_encode($datas);
+	}
+
+	//Search localizations
+	public function searchLocalization(){
+		$datas = $this->db->connector()->select("Localization", [
+			"idLocalization",
+			"name",
+			"latitude",
+			"longitude",
+			"Account_idAccount"],[
+			"name[~]" => $_POST['search']
+		]);
+		echo json_encode($datas);
+	}
+
+	//Search user localizations
+	public function searchUserLocalization(){
+		$datas = $this->db->connector()->select("Localization", [
+			"idLocalization",
+			"name",
+			"latitude",
+			"longitude",
+			"Account_idAccount"],[
+				"AND" => [
+					"Account_idAccount" => $_SESSION["id"],
+					"name[~]" => $_POST['search']
+				]
 		]);
 		echo json_encode($datas);
 	}
